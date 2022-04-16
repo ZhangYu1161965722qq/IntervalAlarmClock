@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zhangyu.intervalalarmclock">
+
+    <!-- 权限 -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />  <!-- 闹钟 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- 开机启动 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- 亮屏 -->
+    <uses-permission android:name="android.permission.VIBRATE" />   <!-- 震动 -->
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />  <!-- 锁屏 -->
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AlarmClock">
+
+        <activity
+            android:name=".AlarmActivity"
+            android:exported="false"
+            android:launchMode="singleTop"/>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".MyAlarmReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.zhangyu.intervalalarmclock.MyAlarmReceiver" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />  <!-- 开机广播 -->
+            </intent-filter> <!-- 广播接受器 -->
+        </receiver>
+    </application>
+
+</manifest>

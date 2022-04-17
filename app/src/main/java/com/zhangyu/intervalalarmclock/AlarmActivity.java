@@ -42,7 +42,7 @@ public class AlarmActivity extends AppCompatActivity {
 
         Toast.makeText(this, "间隔闹钟开始！", Toast.LENGTH_SHORT).show();
 
-        TextView mTextView_CurrentTime = (TextView) findViewById(R.id.textView_CurrentTime);
+        TextView mTextView_CurrentTime = findViewById(R.id.textView_CurrentTime);
 
         SimpleDateFormat sdf_DateTime = new SimpleDateFormat(MainActivity.strDateTimeFormat);
         String strDateTime = sdf_DateTime.format(new Date());
@@ -66,7 +66,7 @@ public class AlarmActivity extends AppCompatActivity {
         });
 
         try {
-            //wakeUpAndUnlock(this, 15000);
+            wakeUpAndUnlock(this, 15000);
         } catch (Exception e) {
             e.printStackTrace();
             Log.i(TAG, "锁屏解锁错误");
@@ -173,7 +173,7 @@ public class AlarmActivity extends AppCompatActivity {
 
             // 获取PowerManager.WakeLock对象,后面的参数|表示同时传入两个值,最后的是LogCat里用的Tag
             @SuppressLint("InvalidWakeLockTag")
-            PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP |PowerManager.SCREEN_DIM_WAKE_LOCK, "SimpeTimer");
+            PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP, "SimpeTimer");
             wl.acquire(timeOut); // 点亮屏幕
             wl.release(); // 释放
 

@@ -173,7 +173,8 @@ public class AlarmActivity extends AppCompatActivity {
 
             // 获取PowerManager.WakeLock对象,后面的参数|表示同时传入两个值,最后的是LogCat里用的Tag
             @SuppressLint("InvalidWakeLockTag")
-            PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP, "SimpeTimer");
+            //必须 PowerManager.SCREEN_DIM_WAKE_LOCK
+            PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP|PowerManager.SCREEN_DIM_WAKE_LOCK, "SimpeTimer");
             wl.acquire(timeOut); // 点亮屏幕
             wl.release(); // 释放
 
